@@ -1,0 +1,11 @@
+[sop]
+name = "claw402-purchase"
+description = "Discover, review, and approve a policy-bound x402 purchase"
+version = "0.1.0"
+max_concurrent = 1
+admission_policy = "hold"
+max_pending_approvals = 1
+
+[[triggers]]
+type = "manual"
+

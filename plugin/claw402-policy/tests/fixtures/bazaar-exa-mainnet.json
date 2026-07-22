@@ -1,0 +1,31 @@
+{
+  "partialResults": false,
+  "searchMethod": "hybrid",
+  "resources": [
+    {
+      "resource": "https://api.exa.ai/search",
+      "serviceName": "Exa",
+      "description": "Exa /search endpoint",
+      "curated": true,
+      "quality": {
+        "l30DaysTotalCalls": 4171,
+        "l30DaysUniquePayers": 127
+      },
+      "accepts": [
+        {
+          "scheme": "exact",
+          "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+          "amount": "7000",
+          "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "payTo": "12Ec2cJmfR1C9uwejzxcuMhUgEC7wDrLgm1wBvvR5w9E",
+          "maxTimeoutSeconds": 60,
+          "extra": {
+            "feePayer": "Hc3sdEAsCGQcpgfivywog9uwtk8gUBUZgsxdME1EJy88",
+            "name": "USD Coin"
+          }
+        }
+      ]
+    }
+  ]
+}
+

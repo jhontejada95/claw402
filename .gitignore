@@ -1,0 +1,11 @@
+.reference/
+.tmp/
+target/
+**/target/
+*.wasm
+*.cwasm
+.env
+*.key
+*wallet*.json
+id.json
+config.local.toml

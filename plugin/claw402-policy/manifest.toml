@@ -1,0 +1,7 @@
+name = "claw402-policy"
+version = "0.1.0"
+description = "Validate and rank x402 Solana purchases against operator-owned hard policy"
+author = "Claw402 contributors"
+wasm_path = "claw402_policy.wasm"
+capabilities = ["tool"]
+permissions = ["config_read", "http_client"]

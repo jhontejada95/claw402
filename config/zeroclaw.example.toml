@@ -1,0 +1,29 @@
+# Merge these sections into a configured ZeroClaw V3 config. Provider, agent,
+# risk profile, and Telegram credentials are intentionally omitted.
+
+[plugins]
+enabled = true
+auto_discover = true
+plugins_dir = "~/.zeroclaw/plugins"
+
+[plugins.security]
+# Use "strict" after signing the release manifest and adding its publisher key.
+signature_mode = "permissive"
+
+[[plugins.entries]]
+name = "claw402-policy"
+
+[plugins.entries.config]
+# 0.005 USDC. Amounts are atomic units and USDC has six decimals.
+max_per_request_atomic = "5000"
+max_timeout_seconds = "60"
+allowed_networks = "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
+allowed_assets = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+
+# Fail-closed placeholders. Populate only after inspecting a real x402 offer.
+allowed_merchants = "REPLACE_WITH_APPROVED_SOLANA_PAY_TO"
+allowed_fee_payers = "REPLACE_WITH_APPROVED_FACILITATOR_FEE_PAYER"
+allowed_hosts = "REPLACE_WITH_APPROVED_RESOURCE_HOST"
+
+bazaar_search_url = "https://api.cdp.coinbase.com/platform/v2/x402/discovery/search"
+
