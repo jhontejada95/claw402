@@ -3,6 +3,7 @@
 target/
 **/target/
 *.wasm
+!website/public/downloads/claw402-policy.wasm
 *.cwasm
 .env
 *.key
