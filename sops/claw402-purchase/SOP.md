@@ -1,7 +1,9 @@
 # Claw402 purchase
 
-The execution tail remains intentionally disabled until transaction rebuilding,
-allowance verification, and signing pass the adversarial test suite.
+Transaction rebuilding and restricted buyer signing now pass the local
+adversarial suite. The execution tail remains disabled until the trusted RPC
+adapter, allowance verification, facilitator calls, and devnet confirmation are
+implemented.
 
 ## Steps
 
@@ -14,4 +16,3 @@ allowance verification, and signing pass the adversarial test suite.
 2. **Human purchase review** — Review provider, merchant, facilitator, amount, and remaining allowance.
    - kind: checkpoint
    - requires_confirmation: true
-

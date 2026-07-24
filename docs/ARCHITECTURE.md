@@ -17,7 +17,10 @@ claw402-policy.wasm
       +-- allow: exact match to operator policy
       |
       v
-future policy signer -----> Solana x402 settlement
+claw402-signer ------> partially signed x402 payload
+      |
+      v
+facilitator verify/settle -----> Solana devnet
       |
       v
 receipt: provider, amount, transaction signature, output hash
@@ -36,11 +39,28 @@ A `wasm32-wasip2` ZeroClaw tool plugin. Its pure Rust core validates x402 SVM
 offers and ranks Bazaar resources. The host injects only this plugin's jailed
 configuration through `__config`.
 
-### Policy signer (planned)
+### `claw402-signer`
 
-Builds the exact SVM payment transaction and signs only after re-running the
-same policy checks. It will verify the serialized transaction byte-for-byte
-against the approved intent before releasing a signature.
+A native boundary separate from the WASM plugin. It re-runs policy, seals the
+offer to one buyer public key, derives both associated token accounts, builds a
+canonical Solana v0 transaction, and signs only the buyer authority. It never
+accepts serialized transaction bytes from the model, resource server, or
+facilitator.
+
+The output is an x402-compatible partially signed transaction. The approved
+facilitator remains the fee payer and its signature slot stays empty until
+verification and settlement.
+
+### Trusted RPC adapter
+
+Resolves trusted chain facts required by the builder: recent blockhash, mint
+owner program, and decimals. It accepts HTTPS endpoints only and has no signing
+capability.
+
+### Facilitator adapter (next)
+
+Submits the partially signed payload to `/verify`, then `/settle`, confirms the
+transaction, and persists the receipt.
 
 ### Solana allowance (planned)
 
@@ -51,6 +71,7 @@ not the sole accounting mechanism.
 ## Why the stages are separate
 
 Discovery results, skill documents, API responses, and model messages are all
-untrusted. None of them can alter plugin configuration. Signing will consume a
-typed `ApprovedPurchase`, not arbitrary model-generated transaction bytes.
-
+untrusted. None of them can alter plugin configuration. Signing consumes a
+private-field `ApprovedPurchase`, not arbitrary model-generated transaction
+bytes. Blockhash and mint metadata are supplied through a distinct trusted
+chain context.
