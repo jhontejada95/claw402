@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const metadataBase = new URL(`${protocol}://${host}`);
   return {
     metadataBase,
-    title: "Claw402 — Safe autonomous procurement",
-    description: "Give agents purchasing power, not wallet control. Deterministic x402 payment policy for ZeroClaw agents on Solana.",
+    title: "Claw402 — The payment firewall for autonomous agents",
+    description: "Give agents purchasing power, not wallet control. Deterministic x402 payment policy for self-hosted ZeroClaw agents on Solana.",
     openGraph: {
       title: "Claw402 — Give agents purchasing power. Not wallet control.",
       description: "A deterministic payment firewall for autonomous agents.",
