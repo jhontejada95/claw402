@@ -21,15 +21,14 @@ export default function ProductPage() {
       <main>
         <section className="subpage-hero section-wrap">
           <div className="section-label">PRODUCT / POLICY FIREWALL</div>
-          <h1>Turn paid APIs into <em>policy-controlled capabilities.</em></h1>
+          <h1>Every paid API. <em>One policy gate.</em></h1>
           <p>
-            Claw402 discovers x402 offers, normalizes payment requirements, and
-            evaluates them against deterministic operator policy before a signer
-            is ever involved.
+            Let agents discover and purchase x402 services without giving the model
+            unrestricted spending power. Every offer must clear your rules first.
           </p>
           <div className="button-row">
-            <a className="button" href="#playground">Try the playground <ArrowRight size={16} weight="bold" /></a>
-            <a className="button button-ghost" href="/developers">Developer setup</a>
+            <a className="button" href="#playground">Test a payment <ArrowRight size={16} weight="bold" /></a>
+            <a className="button button-ghost" href="/developers">Install the firewall</a>
           </div>
         </section>
         <Marquee />
@@ -37,7 +36,7 @@ export default function ProductPage() {
         <section className="section-wrap product-steps">
           <div className="section-heading">
             <div className="section-label">01 / Procurement pipeline</div>
-            <h2>One controlled path from intent to decision.</h2>
+            <h2>From paid request to policy verdict.</h2>
           </div>
           <div className="step-rail">
             {[
@@ -58,8 +57,8 @@ export default function ProductPage() {
         <section className="playground-section" id="playground">
           <div className="section-wrap">
             <div className="section-heading playground-heading">
-              <div><div className="section-label">02 / Policy playground</div><h2>Try to break the firewall.</h2></div>
-              <p>Change the offer and see the deterministic decision update. Frontend simulation only—no transaction or wallet connection.</p>
+              <div><div className="section-label">02 / Policy playground</div><h2>See Claw402 stop a bad payment.</h2></div>
+              <p>Change the amount, recipient, or fee payer and watch policy react. Simulation only—no transaction or wallet connection.</p>
             </div>
             <PolicyPlayground />
           </div>
@@ -68,7 +67,7 @@ export default function ProductPage() {
         <section className="section-wrap roadmap-section">
           <div className="section-heading">
             <div className="section-label">03 / Delivery path</div>
-            <h2>From policy firewall to agent procurement.</h2>
+            <h2>Today: policy. Next: controlled settlement.</h2>
           </div>
           <div className="roadmap-visual">
             <div className="roadmap-axis" aria-hidden="true"><i /><i /><i /></div>
@@ -91,8 +90,8 @@ export default function ProductPage() {
 
         <section className="final-cta section-wrap compact-cta">
           <div className="section-label">NEXT / INTEGRATE</div>
-          <h2>Bring deterministic policy into ZeroClaw.</h2>
-          <div className="button-row"><a className="button" href="/developers#install">Install component <ArrowRight size={16} weight="bold" /></a></div>
+          <h2>Put a policy gate in front of agent spending.</h2>
+          <div className="button-row"><a className="button" href="/developers#install">Install the firewall <ArrowRight size={16} weight="bold" /></a></div>
         </section>
       </main>
       <SiteFooter />

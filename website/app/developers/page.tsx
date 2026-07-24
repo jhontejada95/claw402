@@ -19,13 +19,13 @@ export default function DevelopersPage() {
       <main>
         <section className="subpage-hero section-wrap developer-hero">
           <div className="section-label">DEVELOPERS / RUST + WASM</div>
-          <h1>Inspect the policy. <em>Run the tests.</em></h1>
+          <h1>Install the firewall. <em>Then connect the wallet.</em></h1>
           <p>
-            Build Claw402 as a WASI component, install it into ZeroClaw, and keep
-            payment authority in machine-readable operator configuration.
+            Add deterministic spending caps, asset pinning, merchant allowlists,
+            and fail-closed decisions to your ZeroClaw runtime.
           </p>
           <div className="button-row">
-            <a className="button" href="#install">Install from source <ArrowRight size={16} weight="bold" /></a>
+            <a className="button" href="#install">Build Claw402 <ArrowRight size={16} weight="bold" /></a>
             <a className="button button-ghost" href="/downloads/claw402-policy.wasm" download>Download WASM</a>
           </div>
         </section>
@@ -46,7 +46,7 @@ export default function DevelopersPage() {
         <section className="section-wrap install-page-section" id="install">
           <div className="install-page-copy">
             <div className="section-label">01 / Quickstart</div>
-            <h2>From source to policy component.</h2>
+            <h2>Four commands to a deterministic policy gate.</h2>
             <p>
               The current release covers live Bazaar discovery and deterministic
               policy evaluation. Production signing and autonomous mainnet
@@ -64,7 +64,7 @@ export default function DevelopersPage() {
         <section className="section-wrap config-section">
           <div className="section-heading">
             <div className="section-label">02 / Operator configuration</div>
-            <h2>Authority is explicit, reviewable, and versionable.</h2>
+            <h2>Your spending policy, in version-controlled config.</h2>
           </div>
           <div className="config-grid">
             {[
@@ -80,14 +80,14 @@ export default function DevelopersPage() {
 
         <section className="section-wrap download-card">
           <div className="download-icon"><DownloadSimple size={34} weight="duotone" /></div>
-          <div><div className="section-label">PREBUILT ARTIFACT</div><h2>Download the WASM component.</h2><p>Use the artifact for evaluation, or build from source to inspect the exact policy implementation.</p></div>
+          <div><div className="section-label">PREBUILT ARTIFACT</div><h2>Ship the policy as a WASM component.</h2><p>Download the artifact for evaluation, or build from source to inspect every rule.</p></div>
           <a className="button" href="/downloads/claw402-policy.wasm" download>Download WASM <DownloadSimple size={17} weight="bold" /></a>
         </section>
 
         <section className="final-cta section-wrap compact-cta">
           <div className="section-label">TEST / INSPECT / INTEGRATE</div>
-          <h2>Make payment authority a runtime decision—not a prompt instruction.</h2>
-          <div className="button-row"><a className="button" href="/product#playground">Try policy playground <ArrowRight size={16} weight="bold" /></a></div>
+          <h2>Make agent spending a runtime permission.</h2>
+          <div className="button-row"><a className="button" href="/product#playground">See a payment get blocked <ArrowRight size={16} weight="bold" /></a></div>
         </section>
       </main>
       <SiteFooter />

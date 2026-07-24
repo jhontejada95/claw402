@@ -27,7 +27,7 @@ export function SiteHeader() {
       </nav>
       <div className="header-actions">
         <a className="button button-small" href="/developers#install">
-          Install Claw402
+          Install the firewall
         </a>
         <button
           className="menu-button"

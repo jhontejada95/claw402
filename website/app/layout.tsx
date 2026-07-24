@@ -13,11 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const metadataBase = new URL(`${protocol}://${host}`);
   return {
     metadataBase,
-    title: "Claw402 — The payment firewall for autonomous agents",
-    description: "Give agents purchasing power, not wallet control. Deterministic x402 payment policy for self-hosted ZeroClaw agents on Solana.",
+    title: "Claw402 — Let your agents buy. Keep your wallet locked.",
+    description: "A deterministic payment firewall that lets autonomous agents purchase x402 APIs without unrestricted wallet control.",
     openGraph: {
-      title: "Claw402 — Give agents purchasing power. Not wallet control.",
-      description: "A deterministic payment firewall for autonomous agents.",
+      title: "Claw402 — Let your agents buy. Keep your wallet locked.",
+      description: "Give autonomous agents a budget—not unrestricted wallet control.",
       images: [{ url: "/og.png", width: 1200, height: 630, alt: "Claw402 policy firewall" }],
     },
     twitter: { card: "summary_large_image", images: ["/og.png"] },

@@ -29,15 +29,14 @@ export default function SecurityPage() {
       <main>
         <section className="subpage-hero section-wrap security-hero">
           <div className="section-label">SECURITY / TRUST BOUNDARY</div>
-          <h1>Probabilistic intent. <em>Deterministic execution.</em></h1>
+          <h1>The model can ask. <em>Only policy can approve.</em></h1>
           <p>
-            Claw402 treats prompts, model output, Bazaar metadata, and external APIs
-            as untrusted. Spending authority is defined by operator configuration
-            and enforced outside the model.
+            Keep prompts useful without making them powerful. Claw402 moves spending
+            authority into deterministic, operator-owned rules outside the model.
           </p>
           <div className="button-row">
-            <a className="button" href="#architecture">View architecture <ArrowRight size={16} weight="bold" /></a>
-            <a className="button button-ghost" href="/product#playground">Test policy</a>
+            <a className="button" href="#architecture">See the trust boundary <ArrowRight size={16} weight="bold" /></a>
+            <a className="button button-ghost" href="/product#playground">Watch a payment fail</a>
           </div>
         </section>
 
@@ -45,7 +44,7 @@ export default function SecurityPage() {
           <div className="section-wrap">
             <div className="section-heading">
               <div className="section-label">01 / Trust zones</div>
-              <h2>Authority narrows at the boundary.</h2>
+              <h2>Anything can propose. Only policy has authority.</h2>
             </div>
             <div className="trust-diagram">
               <div className="trust-zone untrusted">
@@ -70,8 +69,8 @@ export default function SecurityPage() {
         <section className="section-wrap controls-section">
           <div className="section-heading">
             <div className="section-label">02 / Defense in depth</div>
-            <h2>Controls you can reason about.</h2>
-            <p>Each control constrains a distinct field or runtime boundary; no safety claim depends on prompt compliance.</p>
+            <h2>Controls prompts cannot negotiate.</h2>
+            <p>Each rule constrains a payment field or runtime boundary. Safety never depends on the model choosing to comply.</p>
           </div>
           <div className="controls-grid">
             {controls.map(([Icon, title, copy], index) => (
@@ -107,8 +106,8 @@ export default function SecurityPage() {
 
         <section className="final-cta section-wrap compact-cta">
           <div className="section-label">VERIFY / THEN BUILD</div>
-          <h2>Inspect the policy before you grant authority.</h2>
-          <div className="button-row"><a className="button" href="/developers">Open developer setup <ArrowRight size={16} weight="bold" /></a></div>
+          <h2>Lock the rules before agents can spend.</h2>
+          <div className="button-row"><a className="button" href="/developers">Install the firewall <ArrowRight size={16} weight="bold" /></a></div>
         </section>
       </main>
       <SiteFooter />

@@ -22,20 +22,19 @@ export default function Home() {
         <section className="hero section-wrap">
           <div className="hero-copy">
             <div className="eyebrow"><i /> Open source · Rust/WASM · Built for ZeroClaw</div>
-            <h1>Give agents purchasing power. <em>Not wallet control.</em></h1>
+            <h1>Let your agents buy. <em>Keep your wallet locked.</em></h1>
             <p>
-              Claw402 is a deterministic payment firewall for self-hosted agents.
-              Discover paid x402 APIs, inspect every payment field, and enforce the
-              operator&apos;s policy before value can move.
+              Claw402 lets autonomous agents purchase paid APIs while deterministic
+              policy controls every amount, recipient, asset, and network.
             </p>
             <div className="button-row">
-              <a className="button" href="/developers#install">Install Claw402 <ArrowRight size={16} weight="bold" /></a>
-              <a className="button button-ghost" href="/product">Explore product</a>
+              <a className="button" href="/developers#install">Install the firewall <ArrowRight size={16} weight="bold" /></a>
+              <a className="button button-ghost" href="/product#playground">See it block a payment</a>
             </div>
             <div className="hero-facts" aria-label="Current release facts">
-              <span><b>09</b> adversarial tests</span>
-              <span><b>15</b> live offers screened</span>
-              <span><b>00</b> keys exposed</span>
+              <span><b>CAPS</b> enforced</span>
+              <span><b>0</b> keys in model</span>
+              <span><b>FAIL</b> closed</span>
             </div>
           </div>
           <AnimatedPolicyTerminal />
@@ -46,11 +45,11 @@ export default function Home() {
         <section className="section-wrap problem-section">
           <div className="problem-intro">
             <div className="section-label">01 / The control gap</div>
-            <h2>Autonomous agents need <em>economic access.</em></h2>
+            <h2>Your agents need access. <em>Your wallet needs boundaries.</em></h2>
             <p>
-              Giving an LLM direct control over a wallet is reckless. Blocking all
-              paid services makes the agent less useful. Claw402 creates the
-              deterministic boundary between those two extremes.
+              Blocking paid services makes agents less useful. Giving a model direct
+              wallet control creates unacceptable risk. Claw402 gives them a narrow,
+              enforceable path to buy what they need.
             </p>
             <a className="text-link" href="/security">Read the security model <ArrowRight size={15} weight="bold" /></a>
           </div>
@@ -77,8 +76,8 @@ export default function Home() {
         <section className="section-wrap execution-section">
           <div className="section-heading centered">
             <div className="section-label">02 / Secure execution flow</div>
-            <h2>The model proposes. <em>Claw402 verifies.</em></h2>
-            <p>Probabilistic intent enters. A machine-readable policy decision leaves.</p>
+            <h2>The agent asks. <em>Policy decides.</em></h2>
+            <p>Every paid request passes through one deterministic gate.</p>
           </div>
           <div className="flow-system" aria-label="Claw402 secure execution flow">
             <div className="flow-node">
@@ -107,18 +106,18 @@ export default function Home() {
           <div className="section-wrap preview-grid">
             <div>
               <div className="section-label">03 / Product surface</div>
-              <h2>Policy decisions you can inspect.</h2>
+              <h2>See every payment decision before value moves.</h2>
               <p>
-                Every allow, denial, or approval request carries an explicit reason.
-                Test offers in the playground, then move the same controls into the
-                ZeroClaw runtime.
+                Every allow, denial, or approval request explains exactly why it
+                passed or stopped. Test a live-shaped offer, then bring the same
+                controls into ZeroClaw.
               </p>
               <ul className="feature-list">
                 <li><CheckCircle size={19} weight="fill" /> Atomic-unit spending caps</li>
                 <li><CheckCircle size={19} weight="fill" /> Network and asset pinning</li>
                 <li><CheckCircle size={19} weight="fill" /> Merchant, fee-payer, and host approval</li>
               </ul>
-              <a className="button" href="/product#playground">Open policy playground <ArrowRight size={16} weight="bold" /></a>
+              <a className="button" href="/product#playground">Test a payment <ArrowRight size={16} weight="bold" /></a>
             </div>
             <AnimatedPolicyTerminal compact />
           </div>
@@ -127,7 +126,7 @@ export default function Home() {
         <section className="section-wrap capability-section">
           <div className="section-heading">
             <div className="section-label">04 / Built as a boundary</div>
-            <h2>Hard limits live outside the prompt.</h2>
+            <h2>Rules prompts cannot rewrite.</h2>
           </div>
           <div className="capability-grid">
             {[
@@ -150,11 +149,11 @@ export default function Home() {
 
         <section className="final-cta section-wrap">
           <div className="section-label">CLAW402 / OPEN SOURCE</div>
-          <h2>Procurement rails for agents—without an unrestricted wallet.</h2>
-          <p>Install the policy component, run the tests, and inspect every decision.</p>
+          <h2>Give agents a budget—not your wallet.</h2>
+          <p>Install the policy gate, define the limits, and inspect every decision.</p>
           <div className="button-row">
-            <a className="button" href="/developers#install">Start building <ArrowRight size={16} weight="bold" /></a>
-            <a className="button button-ghost" href="/security">Review security</a>
+            <a className="button" href="/developers#install">Install the firewall <ArrowRight size={16} weight="bold" /></a>
+            <a className="button button-ghost" href="/security">See how it stays locked</a>
           </div>
         </section>
       </main>
