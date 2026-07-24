@@ -25,15 +25,22 @@ tool boundary, and a separate native restricted signer. It can:
   empty for verification and settlement.
 - resolve the latest blockhash, mint owner program, and decimals through a
   read-only HTTPS Solana RPC adapter.
+- bind the signed payload back to its immutable policy approval;
+- call HTTPS-only x402 facilitator `verify` and `settle` endpoints;
+- refuse settlement when verification fails or returns a different payer;
+- reject duplicate or concurrent settlement attempts for the same message;
+- persist an auditable receipt with the policy fingerprint, message digest,
+  amount, parties, network, and transaction signature.
 
 An end-to-end host smoke test on 2026-07-22 loaded the component in ZeroClaw,
 screened 15 live Bazaar results, and selected one policy-compliant Solana offer
 for Exa Search at 7,000 atomic USDC (0.007 USDC). See
 [Smoke test](docs/SMOKE_TEST.md).
 
-The restricted signer is implemented and adversarially tested, but it is not
-yet connected to a funded wallet, RPC adapter, facilitator, or settlement
-endpoint. On-chain allowance reads and live devnet settlement remain disabled.
+The restricted signer, trusted RPC adapter, and fail-closed facilitator client
+are implemented and adversarially tested. A disposable devnet wallet has been
+created locally under the Git-ignored `.tmp/` boundary. Live settlement remains
+disabled until that wallet receives devnet SOL and USDC from a faucet.
 
 ## Security invariant
 
@@ -51,7 +58,11 @@ See [Architecture](docs/ARCHITECTURE.md),
 cargo test --manifest-path plugin/claw402-policy/Cargo.toml
 cargo test --manifest-path signer/claw402-signer/Cargo.toml
 cargo run --manifest-path signer/claw402-signer/Cargo.toml --example resolve_devnet
+cargo run --manifest-path signer/claw402-signer/Cargo.toml --example settle_devnet
 ```
+
+The last command intentionally exits before reading any wallet unless the
+operator supplies `--confirm SETTLE_DEVNET`.
 
 ## Build the ZeroClaw component
 

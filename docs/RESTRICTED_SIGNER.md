@@ -25,7 +25,10 @@ PaymentOffer + PolicyConfig + payer pubkey
              build_and_sign
                     |
                     v
- partially signed x402 SVM payload
+partially signed x402 SVM payload
+                    |
+                    v
+ verify expected payer -> settle -> auditable receipt
 ```
 
 `approve_purchase` re-runs the hard policy and refuses `deny` or
@@ -52,10 +55,12 @@ x402 SVM exact flow.
 
 ## Secret handling
 
-The crate does not load environment variables, keypair files, seed phrases, or
-remote secrets. An embedding process must provide a `Signer` implementation
-from an isolated custody mechanism. No signing key belongs in ZeroClaw config,
-plugin config, model context, logs, or HTTP payloads.
+The library does not load environment variables, keypair files, seed phrases,
+or remote secrets. An embedding process must provide a `Signer` implementation
+from an isolated custody mechanism. The devnet-only example host reads the
+disposable wallet from `.tmp/`, which is excluded from Git, and never prints
+secret bytes. No signing key belongs in ZeroClaw config, plugin config, model
+context, logs, HTTP payloads, or receipts.
 
 ## Validation
 
@@ -63,11 +68,16 @@ plugin config, model context, logs, or HTTP payloads.
 cargo test --manifest-path signer/claw402-signer/Cargo.toml
 cargo clippy --manifest-path signer/claw402-signer/Cargo.toml --all-targets -- -D warnings
 cargo run --manifest-path signer/claw402-signer/Cargo.toml --example resolve_devnet
+cargo run --manifest-path signer/claw402-signer/Cargo.toml --example settle_devnet
 ```
 
-## Next integration
+The settlement example intentionally fails closed without the literal
+`--confirm SETTLE_DEVNET` argument.
 
-The remaining devnet adapter must resolve the trusted chain context, call the
-x402 facilitator `verify` and `settle` endpoints, confirm the transaction, and
-write an auditable receipt. It must not introduce an arbitrary
+## Remaining live integration
+
+Fund the disposable wallet with devnet SOL and USDC, capture a valid SVM
+`PaymentRequired` offer, approve its exact host/merchant/facilitator in
+`config/claw402.devnet.toml`, and run the explicit settlement command. The
+runner writes the receipt under `.tmp/`; it never introduces an arbitrary
 `sign_transaction(bytes)` interface.

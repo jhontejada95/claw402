@@ -57,10 +57,19 @@ Resolves trusted chain facts required by the builder: recent blockhash, mint
 owner program, and decimals. It accepts HTTPS endpoints only and has no signing
 capability.
 
-### Facilitator adapter (next)
+### Facilitator adapter
 
-Submits the partially signed payload to `/verify`, then `/settle`, confirms the
-transaction, and persists the receipt.
+Rebinds the signed payload to its sealed policy fingerprint, submits it to
+HTTPS-only `/verify`, checks that the facilitator verified the expected payer,
+and only then calls `/settle`. A successful result becomes a receipt containing
+the resource, amount, parties, network, transaction signature, policy
+fingerprint, and signed-message digest. An in-memory replay guard prevents the
+same client instance from settling one signed message twice or concurrently.
+
+For normal third-party x402 purchases, the resource server may own the
+verify/settle calls and return the settlement response through the HTTP x402
+exchange. The direct adapter exists for Claw402-controlled resource servers and
+integration tests; it does not make the model a facilitator client.
 
 ### Solana allowance (planned)
 
