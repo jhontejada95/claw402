@@ -9,7 +9,8 @@ use claw402_signer::{
     approve_purchase,
     budget::BudgetLedger,
     build_and_sign,
-    facilitator::{FacilitatorClient, PaymentPayloadV2},
+    facilitator::PaymentPayloadV2,
+    resource::{ResourceClient, ResourceError},
     rpc::TrustedRpcClient,
 };
 use solana_sdk::{signature::read_keypair_file, signer::Signer};
@@ -58,29 +59,47 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
 
-    // Once the signed payload can be submitted, any facilitator/network error
-    // is ambiguous. Keep the reservation pending so a lost success response
-    // cannot silently restore spending capacity.
-    let receipt = FacilitatorClient::new(args.facilitator)?
-        .verify_and_settle(&approved, &signature, &payment)
-        .map_err(|error| {
-            format!("{error}; budget reservation {purchase_id} remains pending for reconciliation")
-        })?;
-    budget.settle(&purchase_id, &receipt.transaction)?;
+    let request_body: serde_json::Value = serde_json::from_slice(&fs::read(&args.request)?)?;
+
+    // A 402 response is a definitive pre-settlement rejection and can release
+    // capacity. Transport and malformed-success failures remain ambiguous.
+    let output =
+        match ResourceClient::new().execute_json(&approved, &signature, &payment, &request_body) {
+            Ok(output) => output,
+            Err(error @ ResourceError::PaymentRequired(_)) => {
+                budget.release(&purchase_id)?;
+                return Err(error.into());
+            }
+            Err(error) => {
+                return Err(format!(
+                    "{error}; budget reservation {purchase_id} remains pending for reconciliation"
+                )
+                .into());
+            }
+        };
+    budget.settle(&purchase_id, &output.receipt.transaction)?;
     if let Some(parent) = args.receipt.parent() {
         fs::create_dir_all(parent)?;
     }
-    fs::write(&args.receipt, serde_json::to_vec_pretty(&receipt)?)?;
+    if let Some(parent) = args.output.parent() {
+        fs::create_dir_all(parent)?;
+    }
+    fs::write(&args.receipt, serde_json::to_vec_pretty(&output.receipt)?)?;
+    fs::write(&args.output, &output.body)?;
 
     println!("settlement_success=true");
-    println!("network={}", receipt.network);
-    println!("payer={}", receipt.payer);
-    println!("amount_atomic={}", receipt.amount);
-    println!("asset={}", receipt.asset);
-    println!("transaction={}", receipt.transaction);
+    println!("resource_acquired=true");
+    println!("network={}", output.receipt.network);
+    println!("payer={}", output.receipt.payer);
+    println!("amount_atomic={}", output.receipt.amount);
+    println!("asset={}", output.receipt.asset);
+    println!("transaction={}", output.receipt.transaction);
+    println!("resource_sha256={}", output.receipt.resource_sha256);
+    println!("resource_bytes={}", output.receipt.resource_bytes);
     println!("daily_cap_atomic={}", reservation.cap_atomic);
     println!("daily_remaining_atomic={}", reservation.remaining_atomic);
     println!("receipt_path={}", args.receipt.display());
+    println!("resource_path={}", args.output.display());
     println!("secret_printed=false");
     Ok(())
 }
@@ -113,8 +132,9 @@ struct Args {
     policy: PathBuf,
     wallet: PathBuf,
     budget: PathBuf,
+    request: PathBuf,
+    output: PathBuf,
     receipt: PathBuf,
-    facilitator: String,
     rpc: String,
     description: String,
     mime_type: String,
@@ -129,8 +149,9 @@ impl Args {
             policy: "config/claw402.devnet.toml".into(),
             wallet: ".tmp/claw402-devnet/payer.json".into(),
             budget: ".tmp/claw402-devnet/budget.sqlite".into(),
+            request: ".tmp/claw402-devnet/request.json".into(),
+            output: ".tmp/claw402-devnet/resource.json".into(),
             receipt: ".tmp/claw402-devnet/receipt.json".into(),
-            facilitator: "https://x402.org/facilitator".into(),
             rpc: "https://api.devnet.solana.com".into(),
             description: "Claw402 devnet purchase".into(),
             mime_type: "application/json".into(),
@@ -145,8 +166,9 @@ impl Args {
                 "--policy" => args.policy = value.into(),
                 "--wallet" => args.wallet = value.into(),
                 "--budget" => args.budget = value.into(),
+                "--request" => args.request = value.into(),
+                "--output" => args.output = value.into(),
                 "--receipt" => args.receipt = value.into(),
-                "--facilitator" => args.facilitator = value,
                 "--rpc" => args.rpc = value,
                 "--description" => args.description = value,
                 "--mime-type" => args.mime_type = value,

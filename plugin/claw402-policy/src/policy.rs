@@ -27,7 +27,9 @@ pub struct PaymentOffer {
 #[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PaymentExtra {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub fee_payer: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub memo: Option<String>,
 }
 

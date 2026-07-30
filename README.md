@@ -30,6 +30,8 @@ tool boundary, and a separate native restricted signer. It can:
 - refuse settlement when verification fails or returns a different payer;
 - reject duplicate or concurrent settlement attempts for the same message;
 - reserve and persist an aggregate UTC-day budget before any buyer signature;
+- retry the paid HTTPS resource with `PAYMENT-SIGNATURE` and persist its bounded
+  response only when `PAYMENT-RESPONSE` proves a matching settlement;
 - persist an auditable receipt with the policy fingerprint, message digest,
   amount, parties, network, and transaction signature.
 

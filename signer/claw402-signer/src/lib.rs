@@ -7,6 +7,7 @@
 
 pub mod budget;
 pub mod facilitator;
+pub mod resource;
 pub mod rpc;
 
 use std::str::FromStr;

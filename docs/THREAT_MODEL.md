@@ -45,6 +45,9 @@ wallet or secret is connected, and no devnet or mainnet payment is submitted.
     Pending and settled purchases count toward the cap. Pre-signing failures
     release their reservation; ambiguous post-signing failures remain pending
     for reconciliation, and process restarts do not reset spending.
+12. The buyer submits the sealed payload only to the approved HTTPS resource,
+    caps the returned body at one MiB, and accepts success only when the
+    base64 `PAYMENT-RESPONSE` matches payer, network, amount, and transaction.
 
 ## Prompt-injection acceptance test
 
