@@ -12,6 +12,10 @@ allowed_merchants = "REPLACE_WITH_APPROVED_DEVNET_PAY_TO"
 allowed_fee_payers = "REPLACE_WITH_APPROVED_DEVNET_FACILITATOR"
 allowed_hosts = "REPLACE_WITH_APPROVED_RESOURCE_HOST"
 
+[claw402_budget]
+# Persistent UTC-day cap. Pending and settled purchases both consume capacity.
+daily_cap_atomic = "20000"
+
 [trusted_chain_adapter]
 rpc_url = "https://api.devnet.solana.com"
 token_program = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"

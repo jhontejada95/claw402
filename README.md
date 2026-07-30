@@ -29,6 +29,7 @@ tool boundary, and a separate native restricted signer. It can:
 - call HTTPS-only x402 facilitator `verify` and `settle` endpoints;
 - refuse settlement when verification fails or returns a different payer;
 - reject duplicate or concurrent settlement attempts for the same message;
+- reserve and persist an aggregate UTC-day budget before any buyer signature;
 - persist an auditable receipt with the policy fingerprint, message digest,
   amount, parties, network, and transaction signature.
 

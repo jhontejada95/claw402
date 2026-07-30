@@ -5,6 +5,7 @@
 //! It never accepts serialized transactions: it rebuilds the exact transfer from
 //! an allowlisted [`PaymentOffer`] and returns a partially signed x402 payload.
 
+pub mod budget;
 pub mod facilitator;
 pub mod rpc;
 

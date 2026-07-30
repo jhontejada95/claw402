@@ -41,6 +41,10 @@ wallet or secret is connected, and no devnet or mainnet payment is submitted.
    absent from every generated instruction account.
 10. Only SPL Token or Token-2022 `TransferChecked` is generated, with a bounded
     compute limit, bounded priority fee, and one memo.
+11. A SQLite transaction reserves aggregate UTC-day capacity before signing.
+    Pending and settled purchases count toward the cap. Pre-signing failures
+    release their reservation; ambiguous post-signing failures remain pending
+    for reconciliation, and process restarts do not reset spending.
 
 ## Prompt-injection acceptance test
 

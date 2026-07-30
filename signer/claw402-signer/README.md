@@ -25,7 +25,9 @@ After signing, the HTTPS-only facilitator adapter:
 3. checks that the verified payer is the expected buyer;
 4. calls `/settle` only after valid verification;
 5. refuses duplicate or concurrent settlement of one signed message;
-6. writes a receipt containing the policy fingerprint, message digest, amount,
+6. atomically reserves a persistent daily budget before signing, releasing
+   only pre-signing failures and retaining ambiguous submissions;
+7. writes a receipt containing the policy fingerprint, message digest, amount,
    network, payer, merchant, and transaction signature.
 
 Run the deterministic test suite:
@@ -63,5 +65,5 @@ cargo run --manifest-path signer/claw402-signer/Cargo.toml \
 ```
 
 The runner refuses non-devnet offers, non-HTTPS RPC/facilitator endpoints,
-policy mismatches, invalid verification, payer mismatches, and settlement
-without the explicit confirmation phrase.
+policy mismatches, daily-cap exhaustion, invalid verification, payer
+mismatches, and settlement without the explicit confirmation phrase.
