@@ -98,7 +98,7 @@ export default function Home() {
           </div>
           <div className="flow-caption">
             <LockKey size={18} weight="duotone" />
-            Restricted signer is the next settlement milestone. The current release performs discovery and policy evaluation.
+            Devnet procurement is live: policy approval, restricted signing, settlement, and receipt verification all run outside the model.
           </div>
         </section>
 

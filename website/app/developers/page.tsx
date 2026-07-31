@@ -48,9 +48,9 @@ export default function DevelopersPage() {
             <div className="section-label">01 / Quickstart</div>
             <h2>Four commands to a deterministic policy gate.</h2>
             <p>
-              The current release covers live Bazaar discovery and deterministic
-              policy evaluation. Production signing and autonomous mainnet
-              settlement remain intentionally disabled.
+              The current release covers Bazaar discovery, deterministic policy,
+              restricted devnet signing, x402 settlement, and verified receipts.
+              Autonomous mainnet settlement remains intentionally disabled.
             </p>
             <div className="install-checks">
               <span><CheckCircle size={18} weight="fill" /> Build the WASI target</span>

@@ -82,5 +82,7 @@ The resulting component is
 
 ## Status
 
-Claw402 is an active bounty prototype. Do not fund its operational wallet on
-mainnet until the signing milestone and adversarial test suite are complete.
+Claw402 is an active bounty prototype with finalized devnet settlement proof.
+Its operational boundary remains devnet-only: do not fund or run the session
+wallet on mainnet. Production hardening, stronger host custody, and on-chain
+allowances remain future work.

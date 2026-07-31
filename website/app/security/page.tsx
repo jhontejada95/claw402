@@ -59,7 +59,7 @@ export default function SecurityPage() {
               </div>
               <div className="trust-zone trusted">
                 <div className="zone-heading"><LockKey size={23} weight="duotone" /><span>TRUSTED / DETERMINISTIC</span></div>
-                <div className="zone-items"><span>Operator config</span><span>Policy engine</span><span>Transaction verifier</span><span className="upcoming">Restricted signer · next</span></div>
+                <div className="zone-items"><span>Operator config</span><span>Policy engine</span><span>Transaction verifier</span><span>Restricted signer · devnet</span></div>
               </div>
             </div>
             <div className="key-boundary"><Key size={20} weight="duotone" /> Private keys never cross into the model or discovery component.</div>
@@ -95,7 +95,7 @@ export default function SecurityPage() {
             {[
               ["Is Claw402 a wallet?", "No. It is a deterministic policy and verification layer between agent intent and a restricted signing boundary."],
               ["Can the model access private keys?", "No. Keys are not part of the prompt, discovery component, or policy input."],
-              ["Does it execute mainnet payments today?", "Not yet. Live discovery and policy evaluation work today; restricted signing and settlement are the next milestone."],
+              ["Does it execute mainnet payments today?", "No. Restricted signing and x402 settlement are proven on Solana devnet; autonomous mainnet settlement remains intentionally disabled."],
               ["What happens when payment requirements change?", "Claw402 denies the offer or asks for operator approval. Changed metadata cannot silently expand authority."],
               ["Why x402 and Solana?", "x402 exposes machine-readable payment challenges; Solana supports the low-value, high-frequency service purchases this architecture targets."],
             ].map(([question, answer]) => (

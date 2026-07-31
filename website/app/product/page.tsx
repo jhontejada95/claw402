@@ -3,7 +3,6 @@ import {
   CheckCircle,
   CircleNotch,
   Compass,
-  Flag,
   Funnel,
   GearSix,
   RocketLaunch,
@@ -67,17 +66,17 @@ export default function ProductPage() {
         <section className="section-wrap roadmap-section">
           <div className="section-heading">
             <div className="section-label">03 / Delivery path</div>
-            <h2>Today: policy. Next: controlled settlement.</h2>
+            <h2>Today: controlled devnet procurement. Next: production hardening.</h2>
           </div>
           <div className="roadmap-visual">
             <div className="roadmap-axis" aria-hidden="true"><i /><i /><i /></div>
             {[
               [CheckCircle, "SHIPPED", "Policy + discovery", "Rust policy core, ZeroClaw WASM component, Bazaar discovery, adversarial tests."],
-              [CircleNotch, "IN PROGRESS", "Restricted payments", "Deterministic SVM builder, transaction verification, allowance, devnet settlement."],
-              [Flag, "FRONTIER", "Agent procurement", "Controlled micropayments, receipts, provider reputation, multi-service purchasing."],
-            ].map(([Icon, status, title, copy], index) => (
-              <article className={index === 0 ? "complete" : index === 1 ? "current" : ""} key={String(status)}>
-                <div className="roadmap-marker"><Icon size={25} weight={index === 1 ? "bold" : "duotone"} /></div>
+              [CheckCircle, "SHIPPED", "Restricted devnet payments", "Deterministic SVM builder, x402 settlement, persistent budget, and verified receipts."],
+              [CircleNotch, "NEXT", "Production hardening", "Operational custody, on-chain allowances, observability, and provider reputation."],
+            ].map(([Icon, status, title, copy]) => (
+              <article className={status === "SHIPPED" ? "complete" : "current"} key={`${String(status)}-${String(title)}`}>
+                <div className="roadmap-marker"><Icon size={25} weight={status === "NEXT" ? "bold" : "duotone"} /></div>
                 <span>{String(status)}</span><h3>{String(title)}</h3><p>{String(copy)}</p>
               </article>
             ))}
