@@ -70,6 +70,11 @@ The runner refuses non-devnet offers, non-HTTPS RPC/facilitator endpoints,
 policy mismatches, daily-cap exhaustion, invalid verification, payer
 mismatches, and settlement without the explicit confirmation phrase.
 
+For audit and failure analysis it also persists the exact public payment
+payload to `.tmp/claw402-devnet/payment.json` before contacting the resource.
+The file contains the partially signed transaction but never the wallet's
+private key. Override the location with `--payment <path>`.
+
 If a post-signing transport failure leaves a reservation pending, reconcile the
 transaction on-chain first. The `reconcile_budget` example releases only the
 explicit purchase ID and requires the literal `RELEASE_PENDING` confirmation.

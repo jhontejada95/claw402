@@ -59,6 +59,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
 
+    if let Some(parent) = args.payment.parent() {
+        fs::create_dir_all(parent)?;
+    }
+    fs::write(&args.payment, serde_json::to_vec_pretty(&payment)?)?;
+
     let request_body: serde_json::Value = serde_json::from_slice(&fs::read(&args.request)?)?;
 
     // A 402 response is a definitive pre-settlement rejection and can release
@@ -135,6 +140,7 @@ struct Args {
     request: PathBuf,
     output: PathBuf,
     receipt: PathBuf,
+    payment: PathBuf,
     rpc: String,
     description: String,
     mime_type: String,
@@ -152,6 +158,7 @@ impl Args {
             request: ".tmp/claw402-devnet/request.json".into(),
             output: ".tmp/claw402-devnet/resource.json".into(),
             receipt: ".tmp/claw402-devnet/receipt.json".into(),
+            payment: ".tmp/claw402-devnet/payment.json".into(),
             rpc: "https://api.devnet.solana.com".into(),
             description: "Claw402 devnet purchase".into(),
             mime_type: "application/json".into(),
@@ -169,6 +176,7 @@ impl Args {
                 "--request" => args.request = value.into(),
                 "--output" => args.output = value.into(),
                 "--receipt" => args.receipt = value.into(),
+                "--payment" => args.payment = value.into(),
                 "--rpc" => args.rpc = value,
                 "--description" => args.description = value,
                 "--mime-type" => args.mime_type = value,

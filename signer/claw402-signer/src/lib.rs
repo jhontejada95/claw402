@@ -30,7 +30,7 @@ use solana_sdk::{
 };
 use thiserror::Error;
 
-pub const DEFAULT_COMPUTE_UNIT_LIMIT: u32 = 20_000;
+pub const DEFAULT_COMPUTE_UNIT_LIMIT: u32 = 50_000;
 pub const DEFAULT_COMPUTE_UNIT_PRICE_MICROLAMPORTS: u64 = 1;
 pub const TOKEN_PROGRAM: &str = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
 pub const TOKEN_2022_PROGRAM: &str = "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb";
