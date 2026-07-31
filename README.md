@@ -41,9 +41,11 @@ for Exa Search at 7,000 atomic USDC (0.007 USDC). See
 [Smoke test](docs/SMOKE_TEST.md).
 
 The restricted signer, trusted RPC adapter, and fail-closed facilitator client
-are implemented and adversarially tested. A disposable devnet wallet has been
-created locally under the Git-ignored `.tmp/` boundary. Live settlement remains
-disabled until that wallet receives devnet SOL and USDC from a faucet.
+are implemented and adversarially tested. On 2026-07-31 Claw402 completed an
+end-to-end Solana devnet acquisition through the public product endpoint: the
+policy approved 1,000 atomic USDC, x402.org verified and settled the payment,
+the resource returned HTTP 200, and the receipt was reconciled on-chain. See
+[Devnet settlement proof](docs/DEVNET_PROOF.md).
 
 ## Security invariant
 

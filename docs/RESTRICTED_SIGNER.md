@@ -74,10 +74,12 @@ cargo run --manifest-path signer/claw402-signer/Cargo.toml --example settle_devn
 The settlement example intentionally fails closed without the literal
 `--confirm SETTLE_DEVNET` argument.
 
-## Remaining live integration
+## Live integration proof
 
-Fund the disposable wallet with devnet SOL and USDC, capture a valid SVM
-`PaymentRequired` offer, approve its exact host/merchant/facilitator in
-`config/claw402.devnet.toml`, and run the explicit settlement command. The
-runner writes the receipt under `.tmp/`; it never introduces an arbitrary
-`sign_transaction(bytes)` interface.
+The full resource-server flow completed on Solana devnet on 2026-07-31. The
+runner approved and partially signed the canonical transaction, the public
+Claw402 endpoint delegated verification and settlement to x402.org, and the
+paid JSON-RPC resource returned HTTP 200. The runner persisted the public
+payment payload, resource body, and receipt under `.tmp/`; it never introduced
+an arbitrary `sign_transaction(bytes)` interface. See
+[Devnet settlement proof](DEVNET_PROOF.md).
