@@ -22,7 +22,7 @@ Public product: https://claw402-agent-firewall.opal-ray-6711.chatgpt.site
 
 Video (≤3 minutes): **ADD VIDEO URL**
 
-Repository: **ADD PUBLIC GITHUB URL**
+Repository: https://github.com/jhontejada95/claw402
 
 ## ZeroClaw features used
 
