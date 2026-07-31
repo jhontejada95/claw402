@@ -1,4 +1,4 @@
-# Policy-only example for the next Solana devnet integration.
+# Redacted policy template for the proven Solana devnet settlement flow.
 # No keypair, seed phrase, wallet secret, or RPC credential belongs here.
 
 [claw402_policy]
@@ -7,7 +7,9 @@ max_timeout_seconds = "60"
 allowed_networks = "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
 allowed_assets = "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
 
-# Replace only after inspecting the exact devnet PaymentRequirements.
+# Replace only after inspecting the exact devnet PaymentRequirements. The
+# values used in the public proof are intentionally not promoted as universal
+# defaults; operators must approve their own counterparty and host.
 allowed_merchants = "REPLACE_WITH_APPROVED_DEVNET_PAY_TO"
 allowed_fee_payers = "REPLACE_WITH_APPROVED_DEVNET_FACILITATOR"
 allowed_hosts = "REPLACE_WITH_APPROVED_RESOURCE_HOST"
